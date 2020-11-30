@@ -3,9 +3,10 @@
 #include<conio.h>
 
 
+
 struct Node{
 int data;
-struct Node* next;
+
 struct Node* prev;
 };
 
@@ -29,7 +30,7 @@ int main(){
 
     press=1;
     while(press!='4'){
-            printf("enter a num  ");
+            printf("enter a number  ");
         press=getch();
        switch(press){
     case '1':
@@ -56,7 +57,7 @@ struct Node * createNode(int data){
         struct Node * ptr=(struct Node*)malloc(sizeof(struct Node));
         if(ptr){
             ptr->data=data;
-            ptr->next=ptr->prev=NULL;
+            ptr->prev=NULL;
         }
         return ptr;
 
@@ -71,7 +72,6 @@ int push(int data){
         if(!tos){
             tos=cur;
         }else{
-            tos->next=cur;
             cur->prev=tos;
             tos=cur;
         }
@@ -86,9 +86,7 @@ int pop(){
     if(tos){
             tmp=tos;
         ret=tos->data;
-
         tos=tos->prev;
-        if(tos)tos->next=NULL;
         free(tmp);
     }
     return ret;
